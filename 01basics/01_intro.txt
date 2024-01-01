@@ -1,0 +1,29 @@
+library vs framework
+
+-> A library is a collection of pre-written code that developers can use for 
+   specific tasks or functionalities.
+-> Libraries are typically focused on providing reusable functions, classes, 
+   or modules that developers can call directly.
+->  In a library, the developer calls the library's code when needed. The control flow
+    remains with the developer, who decides when and how to use the library.
+->ex. react,jQuery
+
+-> A framework is a comprehensive software infrastructure that provides a structure and 
+   predefined components for building applications.
+->In a framework, the flow of control is often inverted. The framework calls the code 
+  written by the developer, rather than the developer calling the framework.
+->ex. bootstrap,spring Django
+
+prop->properties just like in objects
+
+->installation or getting started with react project
+step1- open terminal and type npm create vite@latest 
+
+**Vite is a build tool for web development that aims to provide a faster and more efficient development
+ experience. It is designed to be a frontend build tool that is optimized for modern 
+ JavaScript frameworks like Vue.js and React
+ ***
+step2- confirm the name of folder
+step3- navigate to the created folder
+step4- npm install 
+step5- done.

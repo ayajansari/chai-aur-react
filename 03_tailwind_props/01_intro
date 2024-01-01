@@ -1,0 +1,8 @@
+steps to work with tailwind
+
+step1- create vite project
+step2- install node modules by npm install
+then refer tailwindcss.com for vite  or below
+step3-  npm install -D tailwindcss postcss autoprefixer
+step4- npx tailwindcss init -p
+step5- update content in tailwind.config.js and index.css
