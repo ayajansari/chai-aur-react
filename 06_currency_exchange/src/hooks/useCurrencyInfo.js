@@ -8,7 +8,7 @@ function useCurrencyInfo(currency) {
     )
       .then((res) => res.json())
       .then((res) => setData(res[currency]));
-  }, [currency]);
+  }, [currency]); //whenever currency changes the data field here  is updated and in app.jsx the value returned by useCurrencyInfo(from) also changes
 
   return data;
 }
