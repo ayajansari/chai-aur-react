@@ -7,7 +7,7 @@ export const ThemeContext = React.createContext(
     darkTheme: () => {},
     lightTheme: () => {},
   }
-  //these are default values of our context
+  //these are default values of our context ,can be empty also
 );
 
 export const ThemeProvider = ThemeContext.Provider;
