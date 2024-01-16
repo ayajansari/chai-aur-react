@@ -4,7 +4,7 @@ import React, { useContext } from "react";
 export const ThemeContext = React.createContext(
   {
     themeMode: "light",
-    darkTheme: () => {},
+    darkTheme: () => {}, //only function initilization are there not definitions,definitions are in App.jsx
     lightTheme: () => {},
   }
   //these are default values of our context ,can be empty also
