@@ -1,0 +1,26 @@
+/*
+Redux Toolkit is a set of utility functions and conventions for
+simplifying the management of state in a Redux application.
+redux is a state management library.
+Redux Toolkit is a set of tools and conventions built on top of Redux 
+to simplify common tasks and reduce boilerplate code. 
+It aims to make Redux more approachable and efficient, especially
+for developers working on large-scale applications. 
+
+*/
+/*
+
+1. store-> store is like global variable where all data is stored 
+2.reducers->reducers are objects which provides functionalities of changing/updating data present in store 
+3.useSeletector->when some data is to be selected from store
+4.useDispatcher->when some data is to be sent in store
+
+*/
+
+steps
+
+1. create react project using vite 
+2.npm install @reduxjs/toolkit
+3.npm install react-redux
+4.create app folder then store.js file
+5.create features folder 
