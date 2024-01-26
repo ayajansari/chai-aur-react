@@ -1,5 +1,8 @@
 import { compose, createSlice, nanoid } from "@reduxjs/toolkit";
 
+//It's a part of the nanoid library which provides a tiny, secure,
+//URL-friendly,unique string ID generator.
+
 const initialState = {
   todos: [
     {
