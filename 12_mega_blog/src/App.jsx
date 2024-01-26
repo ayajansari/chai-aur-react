@@ -9,7 +9,7 @@ function App() {
   //why above syntax , syntaxt will be different for bundlers
   //or we can create conf.js specify all variables there
 
-  console.log(conf.appwriteBucketId);
+  
 
   return (
     <>
