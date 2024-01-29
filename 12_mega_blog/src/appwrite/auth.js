@@ -54,7 +54,7 @@ export class AuthService {
   async getCurrentUser(){
     try{
 
-        return await this.account.get()
+      return await this.account.get()
     }
     catch (error){
       console.log(error);
@@ -63,7 +63,7 @@ export class AuthService {
 
   //logout
 
-  async logOut(){
+  async logout(){
     try{
       return await this.account.deleteSessions(); //all the sessions of user will be deleted
       // and user will be logged out from all devices
@@ -74,5 +74,5 @@ export class AuthService {
   }
 }
 
-const AuthService = new AuthService();
-export default AuthService;
+const authService = new AuthService();
+export default authService;

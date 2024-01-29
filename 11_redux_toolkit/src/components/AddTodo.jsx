@@ -5,7 +5,7 @@ import Todos from "./Todos";
 
 function AddTodo() {
   const [input, setInput] = useState("");
-  const todos = useSelector((state) => state.todos);
+  const todos = useSelector((state) => state.todos);    //state.todos ->todos is name of our slice
 
   const dispatch = useDispatch();
   const addTodoHandler = (e) => {

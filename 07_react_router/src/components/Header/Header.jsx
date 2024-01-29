@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-//link is used instead of a tag because a tag refreshes page and in react no page refresh
+//link is used instead of a-tag because a tag refreshes page and in react no page refresh
 //so link works just like a tag without page reload
 
 //NavLink also does the same thing but is provide additions functionalities like isActive which we have used below

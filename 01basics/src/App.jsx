@@ -3,7 +3,7 @@
 // Babel enables developers to use the latest ECMAScript features, such as arrow functions, 
 // classes, template literals, and more, regardless of the runtime environment's support.
 
-
+//file name and function name may or not may not be same
 function App() {
   
 
