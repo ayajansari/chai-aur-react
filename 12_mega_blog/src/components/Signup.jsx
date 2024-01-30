@@ -1,12 +1,12 @@
-import React from "react";
+import React , {useState} from "react";
 import authService from "../appwrite/auth";
 import { Link,useNavigate } from "react-router-dom";
 import { login } from "../store/authSlice";
 import {Button,Input,Logo} from "./index";
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
-function SignUp(){
+function Signup(){
 
     const navigate=useNavigate()
     const [error,setError]=useState("")
@@ -14,14 +14,19 @@ function SignUp(){
     const {register,handleSubmit}=useForm()
 
     const create=async(data)=>{
+      
+        console.log("data before sending:")
         setError("")
         try {
-            const userData=await authService.createAccount(data)
+            const userData=authService.createAccount(data)
+            
             if(userData){
-                const userData=await authService.getCurrentUser()
+               
+                const userData=authService.getCurrentUser()
+                console.log("data of current user :",userData)
                 if(userData){
                     dispatch(login(userData))
-                    navigate("/")
+                    navigate("/")   //code below this line will also be executed
                 }
             }
         } catch (error) {
@@ -49,8 +54,8 @@ function SignUp(){
                     </Link>
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center"> {error}</p>}
-
-                <form onSubmit={handleSubmit(create) }
+                
+                <form onSubmit={handleSubmit(create)}
                     className="mt-8">
                         <div className="space-y-5"> 
                             <Input
@@ -85,7 +90,10 @@ function SignUp(){
 
                                 })}
                             />
-                            <Button className="w-full" type="submit"  />
+                            <Button className="w-full"  type="submit" >
+                                Create Account
+                            </Button>
+                            
 
                         </div>
                     
@@ -94,3 +102,5 @@ function SignUp(){
         </div>
     )
 }
+
+export default Signup

@@ -2,10 +2,11 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";    //because we have to make same named function so change this name
-import {Form, useForm} from "react-hook-form"
+import { useForm} from "react-hook-form"
 import authService from "../appwrite/auth";
 import {Button,Input,Logo} from "./index";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 function Login(){
 
@@ -20,18 +21,22 @@ function Login(){
     const login=async (data)=>{
         //The data parameter contains the values of the form fields submitted by the user.
         // The values are automatically collected by React Hook Form and passed to the onSubmit function.
+       
         setError("")
         try {
             const session=await authService.login(data);
             if(session){
+               
                 const userData=await authService.getCurrentUser()
                 if(userData){
+                 
                     dispatch(authLogin(userData))
                     navigate("/")
                 }
             }
         } catch (error) {
-            setError(error)
+            
+            setError(error.message)
             
         }
     }
@@ -56,6 +61,7 @@ function Login(){
                     </Link>
                 </p>
 
+                {/* if user is not signed up or giving wrong credential then show error */}
                 {error && <p className="text-red-600 mt-8 text-center">{error} </p>}
 
                 <form onSubmit={handleSubmit(login) }
@@ -86,7 +92,9 @@ function Login(){
 
                                 })}
                             />
-                            <Button className="w-full" type="submit"  />
+                            <Button className="w-full" type="submit"  >
+                                Sign In
+                            </Button>
 
                         </div>
                     
@@ -96,3 +104,5 @@ function Login(){
         </div>
     )
 }
+
+export default Login

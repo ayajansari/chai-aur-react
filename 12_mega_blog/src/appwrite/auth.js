@@ -16,22 +16,23 @@ export class AuthService {
 
   async createAccount({ email, password, name }) {  //here we are using async-await but we can use normal promise also 
     //when we make function inside class then no need to use keyword function
-    
+    console.log("data received")
     try{
         const userAccount= await this.account.create(ID.unique(),email,password,name);
-
+        
         if(userAccount){
-
+          console.log("data received dd")
           //use created successful , no need to again login we can redirect it to login
-          return this.login(email,password)
+          return this.login({email,password})
           
         }else{
-
+          
           return userAccount 
         }
+        
     }
     catch(error){
-        
+      console.log("user singup unsuccessfull")
       throw error;
 
     }
@@ -57,7 +58,8 @@ export class AuthService {
       return await this.account.get()
     }
     catch (error){
-      console.log(error);
+      // console.log(error);
+      throw error
     }
   }
 

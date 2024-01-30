@@ -23,6 +23,7 @@ const Input=React.forwardRef(function Input({
                             w-full ${className}`
                 }
                 ref={ref}
+                {...props}
                 id={id}
             />
 
