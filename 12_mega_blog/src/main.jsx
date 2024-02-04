@@ -8,7 +8,6 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import Home from './pages/Home.jsx'
 import { AuthLayout, Login } from './components/index.js'
 
-
 import AddPost from "./pages/AddPost";
 import Signup from './pages/Signup'
 import EditPost from "./pages/EditPost";
@@ -24,28 +23,26 @@ const router = createBrowserRouter([
     children: [
         {
             path: "/",
-            element: <Home />,
+            element: (                
+                    <Home />                
+            )                    
         },
         {
             path: "/login",
-            element: (
-                <AuthLayout authentication={false}>
-                    <Login />
-                </AuthLayout>
+            element: (                
+                    <Login />     
             ),
         },
         {
             path: "/signup",
-            element: (
-                <AuthLayout authentication={false}>
+            element: (         
                     <Signup />
-                </AuthLayout>
             ),
         },
         {
             path: "/all-posts",
             element: (
-                <AuthLayout authentication>
+                <AuthLayout >
                     {" "}
                     <AllPosts />
                 </AuthLayout>
@@ -54,7 +51,7 @@ const router = createBrowserRouter([
         {
             path: "/add-post",
             element: (
-                <AuthLayout authentication>
+                <AuthLayout >
                     {" "}
                     <AddPost />
                 </AuthLayout>
@@ -63,7 +60,7 @@ const router = createBrowserRouter([
         {
             path: "/edit-post/:slug",
             element: (
-                <AuthLayout authentication>
+                <AuthLayout >
                     {" "}
                     <EditPost />
                 </AuthLayout>
@@ -71,7 +68,11 @@ const router = createBrowserRouter([
         },
         {
             path: "/post/:slug",
-            element: <Post />,
+            element:(
+            <AuthLayout>
+                <Post />
+            </AuthLayout>
+            ) 
         },
     ],
 },
@@ -79,9 +80,12 @@ const router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <RouterProvider router={router}/>
-    </Provider>
-  </React.StrictMode>,
+    
+        <React.StrictMode>
+            <Provider store={store}>
+                <RouterProvider router={router}/>
+            </Provider>
+        </React.StrictMode>
+  
+  
 )

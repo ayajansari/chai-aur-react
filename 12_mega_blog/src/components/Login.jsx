@@ -8,6 +8,7 @@ import {Button,Input,Logo} from "./index";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+
 function Login(){
 
     const navigate=useNavigate()
@@ -28,8 +29,9 @@ function Login(){
             if(session){
                
                 const userData=await authService.getCurrentUser()
+               
                 if(userData){
-                 
+                    console.log(userData.$id)
                     dispatch(authLogin(userData))
                     navigate("/")
                 }
@@ -40,6 +42,19 @@ function Login(){
             
         }
     }
+
+    //login by google
+   
+    const loginGoogle=()=>{
+        authService.loginByGoogle();
+    }
+    
+    //login by github
+   
+    const loginGithub=()=>{
+        authService.loginByGithub();
+    }
+    
     return(
         <div className="flex items-center justify-center w-full"
         >
@@ -65,7 +80,7 @@ function Login(){
                 {error && <p className="text-red-600 mt-8 text-center">{error} </p>}
 
                 <form onSubmit={handleSubmit(login) }
-                    className="mt-8">
+                    className="mt-8 ">
                         <div className="space-y-5"> 
                             <Input
                                 label="Email" 
@@ -96,9 +111,18 @@ function Login(){
                                 Sign In
                             </Button>
 
+
                         </div>
                     
                 </form>
+                <div className="mt-8 flex justify-center p-4 " onClick={loginGoogle}>
+                    Sign in with Google  
+                    
+                </div>
+                <div className="mt-8 flex justify-center p-4 " onClick={loginGithub}>
+                    Sign in with Github  
+                    
+                </div>
             </div>
 
         </div>

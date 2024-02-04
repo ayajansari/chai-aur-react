@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 function Header(){
 
-    const authStatus=useSelector((state)=> state.status)  //store status of user wheather loggedin or not
+    const authStatus=useSelector((state)=> state.auth.status)  //store status of user wheather loggedin or not
     const navigate=useNavigate()
     const navItems=[
         {

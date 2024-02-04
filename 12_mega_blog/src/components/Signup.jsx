@@ -6,6 +6,11 @@ import {Button,Input,Logo} from "./index";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 
+//useForm is a hook provided by the react-hook-form library, which is a popular 
+//form management library for React. It helps you manage the state of your form 
+//inputs, handle form submission, and perform form validation with ease.
+
+
 function Signup(){
 
     const navigate=useNavigate()
@@ -15,17 +20,20 @@ function Signup(){
 
     const create=async(data)=>{
       
-        console.log("data before sending:")
+        // console.log("data before sending:",data)     //entire form data
         setError("")
         try {
-            const userData=authService.createAccount(data)
+            const userData=await authService.createAccount(data)
+            console.log("data after account creation:",userData)
             
             if(userData){
                
-                const userData=authService.getCurrentUser()
-                console.log("data of current user :",userData)
-                if(userData){
-                    dispatch(login(userData))
+                const userData1=await authService.getCurrentUser()
+                console.log("data after getCurrentUser :",userData1)
+
+                if(userData1){
+                    
+                    dispatch(login(userData1))
                     navigate("/")   //code below this line will also be executed
                 }
             }
@@ -57,7 +65,8 @@ function Signup(){
                 
                 <form onSubmit={handleSubmit(create)}
                     className="mt-8">
-                        <div className="space-y-5"> 
+                        <div className="space-y-5">
+
                             <Input
                                 label="Full Name" 
                                 type="text " 
@@ -66,6 +75,15 @@ function Signup(){
                                     required:true
                                     })
                                 } 
+                                //here we are using register because our input components are not in this component they are elsewhere
+                                //if change occurs in inputs then how will we get those data,
+                                // 1)declare variables through useState() pass it in child components so that in child data will be stored
+                                // in this variable and now in current  file we get input data by variable.
+                                //2)use useRef
+                                //3) by using register we can register input,select,textarea fields so that in validation
+                                //we can apply required,pattern,etc. validations and during submission we will get data of input fields
+                                //directly and data will be stored in variable name will be the name of key in register,(e.g here  name is key)
+
                             />
                             <Input
                                 label="Email" 

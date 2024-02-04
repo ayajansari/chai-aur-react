@@ -5,12 +5,15 @@ import appwriteService from "../appwrite/config";
 
 function AllPosts() {
     const [posts, setPosts] = useState([])
-    useEffect(() => {}, [])
-    appwriteService.getPosts([]).then((posts) => {      //[] will contain the o/t from getPosts()
-        if (posts) {
-            setPosts(posts.documents)
-        }
-    })
+
+     useEffect(() => {          //always make api calls or functions taking time in useEffect
+        appwriteService.getPosts([]).then((post) => {      //[] will contain the o/t from getPosts()
+            if (post) {
+                setPosts(post.documents)
+            }
+        })
+    }, [])
+    
   return (
     <div className='w-full py-8'>
         <Container>
@@ -21,7 +24,7 @@ function AllPosts() {
                     </div>
                 ))}
             </div>
-            </Container>
+        </Container>
     </div>
   )
 }

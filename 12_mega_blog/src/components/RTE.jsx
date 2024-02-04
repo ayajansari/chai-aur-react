@@ -1,11 +1,13 @@
-//Real time editor
-//confusing
+// Real time editor
+// confusing
 import React from 'react'
 import {Editor } from '@tinymce/tinymce-react';
 import {Controller } from 'react-hook-form';
+import conf from '../conf/conf';
 
 
 export default function RTE({name, control, label, defaultValue =""}) {
+
   return (
     <div className='w-full'> 
     {label && <label className='inline-block mb-1 pl-1'>{label}</label>}
@@ -16,6 +18,7 @@ export default function RTE({name, control, label, defaultValue =""}) {
     render={({field: {onChange}}) => (          //whenever field changes <Editor> will be rendered
         <Editor
         initialValue={defaultValue}
+        apiKey={conf.myApi}
         init={{
             initialValue: defaultValue,
             height: 500,

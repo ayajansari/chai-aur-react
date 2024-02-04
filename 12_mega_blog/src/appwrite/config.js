@@ -42,7 +42,7 @@ export class Service{
         try{
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
-                conf,appwriteCollectionId,
+                conf.appwriteCollectionId,
                 slug,
                 {
                     title,
@@ -93,7 +93,7 @@ export class Service{
                 conf.appwriteDatabaseId,
                 conf.appwriteCollectionId,
                 [
-                    Query.equal('status','active')
+                    Query.equal('status','active')  //show only those posts which are active now and not deactivated by auther
                 ]
             )
         }
@@ -132,14 +132,22 @@ export class Service{
         }
     }
 
-    //getFilePreview
-    async getFilePreview(fielId){
-        return await this.bucket.getFilePreview(
+    //getFilePreview ->it is a method that can be used to generate a preview
+                    // URL for a file. It is commonly used to generate URLs for 
+                    //image and video previews uploaded to the Appwrite storage service. 
+
+    getFilePreview(fileId){
+
+        return this.bucket.getFilePreview(
             conf.appwriteBucketId,
             fileId
         )
+
     }
 }
 
 const service=new Service()
 export default service;
+
+
+//in class no need to write data types of variables,functions

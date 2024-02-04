@@ -12,7 +12,10 @@ export default function Post() {
 
     const userData = useSelector((state) => state.auth.userData);
 
-    const isAuthor = post && userData ? post.userId === userData.$id : false;
+    const isAuthor = post && userData ? post.userId === userData.$id : false; 
+    //if isAuthor=true then only show edit and delete buttons as this post belongs so that same user
+    //currently the post value is null but when useEffect run the post value will set and again above statement
+    //will be exectued 
 
     useEffect(() => {
         if (slug) {
@@ -37,9 +40,9 @@ export default function Post() {
             <Container>
                 <div className="w-full flex justify-center mb-4 relative border rounded-xl p-2">
                     <img
-                        src={appwriteService.getFilePreview(post.featuredImage)}
-                        alt={post.title}
-                        className="rounded-xl"
+                        src={`${appwriteService.getFilePreview(post.featuredImage)}`}
+                        alt="img"
+                        className="rounded-xl w-2/3  h-80"
                     />
 
                     {isAuthor && (

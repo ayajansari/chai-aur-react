@@ -7,37 +7,46 @@ import appwriteService from "../../appwrite/config";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
 //confusing
 export default function PostForm({ post }) {
     const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
-        defaultValues: {
+        defaultValues: {    //these values are accesses from getValues and updated by setValues
             title: post?.title || "",
-            slug: post?.$id || "",
+            slug: post?.$id || "",      //slug is nothing but we are converting title into slug(by replacing " " -> "-" and it is used as a DOCUMENT_ID in database)
             content: post?.content || "",
             status: post?.status || "active",
         },
     });
 
+
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
+    // console.log(userData)
+    console.log("user id:",userData["$id"])
+    
+    const submit = async (data) => {    //data is the entire data of form 
 
-    const submit = async (data) => {
-        if (post) {
-            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
+        if (post) {     //edit post
+            const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;    //upload the updated image
 
             if (file) {
-                appwriteService.deleteFile(post.featuredImage);
+                appwriteService.deleteFile(post.featuredImage); //delete previous image
             }
-
+            console.log("post id:",data)
             const dbPost = await appwriteService.updatePost(post.$id, {
                 ...data,
                 featuredImage: file ? file.$id : undefined,
             });
 
             if (dbPost) {
+
                 navigate(`/post/${dbPost.$id}`);
             }
-        } else {
+        } else { 
+               
+            console.log(data)
+        
             const file = await appwriteService.uploadFile(data.image[0]);
 
             if (file) {
@@ -80,7 +89,11 @@ export default function PostForm({ post }) {
                     label="Title :"
                     placeholder="Title"
                     className="mb-4"
-                    {...register("title", { required: true })}
+                    {...register("title", { required: true })}     
+                    //function is used to register an input element (like an HTML input, select, or textarea) with the form
+                    //it tells the library to keep track of the input's value and validity. just like we provide pattern, required:true
+
+
                 />
                 <Input
                     label="Slug :"
@@ -88,10 +101,11 @@ export default function PostForm({ post }) {
                     className="mb-4"
                     {...register("slug", { required: true })}
                     onInput={(e) => {
-                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
+                        setValue("slug", slugTransform(e.target.value), { shouldValidate: true });
                     }}
+                    readOnly={true}
                 />
-                <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
+                <RTE label="Content :"    name="content" control={control} defaultValue={getValues("content")}  />
             </div>
             <div className="w-1/3 px-2">
                 <Input
@@ -104,8 +118,8 @@ export default function PostForm({ post }) {
                 {post && (
                     <div className="w-full mb-4">
                         <img
-                            src={appwriteService.getFilePreview(post.featuredImage)}
-                            alt={post.title}
+                            src={ `${appwriteService.getFilePreview(post.featuredImage)}`}
+                            alt="img"
                             className="rounded-lg"
                         />
                     </div>
