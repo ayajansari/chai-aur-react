@@ -110,9 +110,10 @@ export default authService;
       6. Authorized redirect URIs - https://cloud.appwrite.io/v1/account/sessions/oauth2/callback/google/65afcb9becbe5ec0c399 this url is received in step1 when we enabled option
       7. done
   3. add sign in with google button and call loginByGoogle above function
-  4.done
+  4.done.
    
   
+
   */
 
  
