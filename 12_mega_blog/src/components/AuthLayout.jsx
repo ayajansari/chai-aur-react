@@ -4,7 +4,6 @@ import { useNavigate } from "react-router-dom";
 import Container from "./container/Container";
 
 
-//confusing
 
 export default function Protected({children}){
 

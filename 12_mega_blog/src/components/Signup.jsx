@@ -10,6 +10,12 @@ import { useForm } from "react-hook-form";
 //form management library for React. It helps you manage the state of your form 
 //inputs, handle form submission, and perform form validation with ease.
 
+//ref
+//In the context of your form, the ref will be passed down automatically in child component
+// when you use the register function from react-hook-form. 
+//The register function registers an input element with the form, and it returns a ref 
+//that you can use to associate the input with React Hook Form.
+
 
 function Signup(){
 

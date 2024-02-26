@@ -47,7 +47,7 @@ export default function PostForm({ post }) {
                
             console.log(data)
         
-            const file = await appwriteService.uploadFile(data.image[0]);
+            const file = await appwriteService.uploadFile(data.image[0]);//to get imageID
 
             if (file) {
                 const fileId = file.$id;
@@ -90,8 +90,9 @@ export default function PostForm({ post }) {
                     placeholder="Title"
                     className="mb-4"
                     {...register("title", { required: true })}     
-                    //function is used to register an input element (like an HTML input, select, or textarea) with the form
-                    //it tells the library to keep track of the input's value and validity. just like we provide pattern, required:true
+                    //function is used to register an input element (like an HTML input, select, or textarea,checkbox) with the form
+                    //it tells the library to keep track of the input's value and validity.so that no need to write onChange={(e)=>setValue(e.target.value)}.
+                    //input data will be automatically stored in title field and we can also update title value by setValue(title,-val-)
 
 
                 />
